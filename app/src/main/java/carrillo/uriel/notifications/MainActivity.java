@@ -7,6 +7,10 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -157,6 +161,8 @@ public class MainActivity extends ActionBarActivity
         Notification notif = null;
         Notification.Builder builder = new Notification.Builder(this).setSmallIcon(R.drawable.ic_launcher).setWhen(System.currentTimeMillis()).setContentText("Android Notifications");
 
+
+
         switch(v.getId()) {
             case R.id.btnMaxPriorityNotification:
                 builder.setContentTitle("Maximun Priority Notification").setPriority(Notification.PRIORITY_MAX);
@@ -201,7 +207,8 @@ public class MainActivity extends ActionBarActivity
         }
     }
     public void sendNotification(Notification notif){
-        manager.notify(NOTIF_REF++,notif);
+        notif.defaults=Notification.DEFAULT_ALL;
+        manager.notify(NOTIF_REF++, notif);
     }
 
     private Notification getDefaultNotification(Notification.Builder builder){
@@ -211,6 +218,9 @@ public class MainActivity extends ActionBarActivity
                 .setContentTitle("Default Notification")
                 .setContentText("This is random text for default type notifications")
                 .setContentInfo("Info");
+
+
+
         return builder.build();
     }
 
